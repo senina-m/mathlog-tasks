@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+    id 'antlr'
+}
+
+
+group 'ru.senina.itmo'
+targetCompatibility = 1.8
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+// Optional - Generates visitor classes
+generateGrammarSource {
+    arguments += ["-visitor"]
+}
+
+dependencies {
+    implementation 'com.bpodgursky:jbool_expressions:1.23'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    implementation 'org.antlr:antlr4-runtime:4.7.1'
+}
+
+test {
+    useJUnitPlatform()
+}
