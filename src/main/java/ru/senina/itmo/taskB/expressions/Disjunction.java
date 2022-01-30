@@ -5,6 +5,10 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 @Getter
 @EqualsAndHashCode
 @AllArgsConstructor
@@ -16,6 +20,17 @@ public class Disjunction implements Expression {
     @Override
     public String toTree() {
         return "(" + disjunction + "|" + conjunction + ")";
+    }
+
+    @Override
+    public boolean calcValue() {
+        return disjunction.calcValue() || conjunction.calcValue();
+    }
+
+    @Override
+    public void fillVarSet(Map<String, List<Variable>> map) {
+        conjunction.fillVarSet(map);
+        disjunction.fillVarSet(map);
     }
 
     @Override

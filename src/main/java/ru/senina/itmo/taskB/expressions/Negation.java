@@ -5,6 +5,10 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 @Getter
 @EqualsAndHashCode
 @AllArgsConstructor
@@ -15,6 +19,16 @@ public class Negation implements  Expression{
     @Override
     public String toTree() {
         return "(!" + negation.toTree() + ")";
+    }
+
+    @Override
+    public boolean calcValue() {
+        return !negation.calcValue();
+    }
+
+    @Override
+    public void fillVarSet(Map<String, List<Variable>> map) {
+        negation.fillVarSet(map);
     }
 
     @Override

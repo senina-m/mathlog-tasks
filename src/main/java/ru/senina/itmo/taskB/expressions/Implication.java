@@ -5,6 +5,10 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 @Getter
 @EqualsAndHashCode
 @AllArgsConstructor
@@ -17,6 +21,17 @@ public class Implication implements Expression{
     @Override
     public String toTree() {
         return "(->," + disjunction.toTree() + "," + expression.toTree() + ")";
+    }
+
+    @Override
+    public boolean calcValue() {
+        return !disjunction.calcValue() || expression.calcValue();
+    }
+
+    @Override
+    public void fillVarSet(Map<String, List<Variable>> map) {
+        disjunction.fillVarSet(map);
+        expression.fillVarSet(map);
     }
 
     @Override
