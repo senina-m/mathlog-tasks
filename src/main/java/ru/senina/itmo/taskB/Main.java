@@ -3,14 +3,15 @@ package ru.senina.itmo.taskB;
 import ru.senina.itmo.taskB.expressions.Expression;
 import ru.senina.itmo.taskB.expressions.Variable;
 import ru.senina.itmo.taskB.parser.Parser;
-import java.io.FileNotFoundException;
+
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        Expression expression = Parser.parse("input.txt");
+        Expression expression = Parser.parse();
 
         Map<String, List<Variable>> varMap = new HashMap<>();
 
@@ -35,20 +36,7 @@ public class Main {
             System.out.println("Satisfiable and invalid, " + numOfTrueResults + " true and " +
                     (numOfChecks - numOfTrueResults) + " false cases");
         }
-
-        try (PrintWriter out = new PrintWriter("output.txt")) {
-            out.println(expression.toTree());
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
     }
-
-//    private static Variable[] createArrayFromMap(Map<String, Variable> map) {
-//        Variable[] out = new Variable[map.size()];
-//        List<Variable> ret = new ArrayList<>(map.size());
-//        ret.addAll(map.values());
-//        return ret.toArray(out);
-//    }
 
     private static void setNextCombination(String[] varNames, Map<String, List<Variable>> map) {
         boolean value = getValueOfVars(varNames[0], map);
