@@ -1,18 +1,20 @@
 package ru.senina.itmo.taskB;
 
-import com.bpodgursky.jbool_expressions.Expression;
-import com.bpodgursky.jbool_expressions.parsers.ExprParser;
-import com.bpodgursky.jbool_expressions.rules.RuleSet;
+import ru.senina.itmo.taskB.expressions.Expression;
+import ru.senina.itmo.taskB.parser.Parser;
 
-import java.util.Scanner;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 public class Main {
-    public static void main(String[] args){
-
-        Scanner sc = new Scanner(System.in);
-        String exp = sc.nextLine();
-        String example = "(( (! C) | C) & A => B)";
-        Expression<String> parsedExpression = ExprParser.parse(example);
-        System.out.println(parsedExpression);
+    public static void main(String[] args) throws IOException {
+        Expression expression = Parser.parse("input.txt");
+        try (PrintWriter out = new PrintWriter("output.txt")) {
+            out.println(expression.toTree());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }
