@@ -4,9 +4,10 @@ import lombok.*;
 
 @EqualsAndHashCode
 @AllArgsConstructor
+@NoArgsConstructor
 public class Variable implements Expression{
     @Getter
-    private final String var;
+    private String var;
 
     @Override
     public String toTree() {

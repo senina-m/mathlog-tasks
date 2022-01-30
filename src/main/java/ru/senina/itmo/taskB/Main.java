@@ -3,7 +3,6 @@ package ru.senina.itmo.taskB;
 import ru.senina.itmo.taskB.expressions.Expression;
 import ru.senina.itmo.taskB.parser.Parser;
 
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
